@@ -1,7 +1,7 @@
 import React from "react";
 
-function Heading() {
+const Heading = () => {
   return <div>Heading</div>;
-}
+};
 
 export default Heading;

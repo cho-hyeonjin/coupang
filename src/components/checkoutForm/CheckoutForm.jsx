@@ -1,7 +1,7 @@
 import React from "react";
 
-function CheckoutForm() {
+const CheckoutForm = () => {
   return <div>CheckoutForm</div>;
-}
+};
 
 export default CheckoutForm;

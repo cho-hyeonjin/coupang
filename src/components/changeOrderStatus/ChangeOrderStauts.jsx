@@ -1,7 +1,7 @@
 import React from "react";
 
-function ChangeOrderStauts() {
+const ChangeOrderStauts = () => {
   return <div>ChangeOrderStauts</div>;
-}
+};
 
 export default ChangeOrderStauts;

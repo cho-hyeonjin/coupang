@@ -1,7 +1,7 @@
 import React from "react";
 
-function ToastProvider() {
+const ToastProvider = () => {
   return <div>ToastProvider</div>;
-}
+};
 
 export default ToastProvider;

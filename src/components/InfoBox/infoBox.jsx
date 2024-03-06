@@ -1,7 +1,7 @@
 import React from "react";
 
-function infoBox() {
+const infoBox = () => {
   return <div>infoBox</div>;
-}
+};
 
 export default infoBox;
