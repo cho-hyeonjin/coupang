@@ -2,10 +2,12 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-import LogoPath from "@/assets/chopang_logo.svg";
+// import LogoPath from "@/assets/chopang_logo.svg";
+import LogoPath from "@/assets/logo.svg";
 import { useRouter } from "next/navigation";
 
 import styles from "./Auth.module.scss";
+import Loader from "@/components/loader/Loader";
 
 const LoginClient = () => {
   const [email, setEmail] = useState();
@@ -27,31 +29,34 @@ const LoginClient = () => {
   const signInWithGoogle = () => {};
 
   return (
-    <section className={styles.page}>
-      <div className={styles.container}>
-        <h1 className={styles.logo}>
-          <Image priority src={LogoPath} alt="logo" />
-        </h1>
+    <>
+      <Loader />
+      <section className={styles.page}>
+        <div className={styles.container}>
+          <h1 className={styles.logo}>
+            <Image priority src={LogoPath} alt="logo" />
+          </h1>
 
-        <form onSubmit={loginUser} className={styles.form}>
-          {/* Input */}
-          Input
-          <div className={styles.group}>
-            {/* 자동 로그인, 비밀번호 수정 */}
-            자동 로그인, 비밀번호 수정
-          </div>
-        </form>
+          <form onSubmit={loginUser} className={styles.form}>
+            {/* Input */}
+            Input
+            <div className={styles.group}>
+              {/* 자동 로그인, 비밀번호 수정 */}
+              자동 로그인, 비밀번호 수정
+            </div>
+          </form>
 
-        <div className={styles.buttonGroup}>
-          {/* Button */}
-          Button
-          <div>
+          <div className={styles.buttonGroup}>
             {/* Button */}
             Button
+            <div>
+              {/* Button */}
+              Button
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
