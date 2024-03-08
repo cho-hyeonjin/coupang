@@ -44,7 +44,7 @@ const Tooltip = ({
       className={classNames(styles.tooltip, setOrientationClass(orientation))}
       {...restProps}
     >
-      Tooltip
+      {message}
     </span>
   );
 };
