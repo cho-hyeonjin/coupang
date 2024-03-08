@@ -28,7 +28,7 @@ const Input = ({
     }
 
     if (password) {
-      return isPasswordVisible ? "text" : password;
+      return isPasswordVisible ? "text" : "password";
     }
 
     return "text";
@@ -45,7 +45,7 @@ const Input = ({
   return (
     // className={classNames(styles.foramControl, className)} 은 라이브러리 사용한 문법.
     // classNames=('test1', 'test2') → className='test1 test2'
-    <div className={classNames(styles.foramControl, className)}>
+    <div className={classNames(styles.formControl, className)}>
       <label
         htmlFor={id}
         className={classNames(styles.label, labelVisible || styles.labelHidden)}
@@ -85,6 +85,7 @@ const Input = ({
           </button>
         ) : null}
       </div>
+
       {errorProp && (
         <span role="alert" className={styles.error}>
           {errorProp.message}
