@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Input.module.scss";
 import classNames from "classnames";
+import Icon from "../icon/Icon";
 
 const Input = ({
   id,
@@ -59,7 +60,7 @@ const Input = ({
           errorProp && styles.inputWrapperError
         )}
       >
-        {/* {icon ? <Icon /> : null} */}
+        {icon ? <Icon type={icon} /> : null}
         <input
           id={id}
           type={checkType()}
@@ -81,7 +82,7 @@ const Input = ({
             disabled={disabled}
             icon={icon}
           >
-            {/* <Icon type={iconType} alt={iconLable} title={iconLable} /> */}
+            <Icon type={iconType} alt={iconLabel} title={iconLabel} />
           </button>
         ) : null}
       </div>
