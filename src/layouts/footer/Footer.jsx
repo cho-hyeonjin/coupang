@@ -8,6 +8,7 @@ import naverIcon from "@/assets/sns-naver-blog.svg";
 
 import Image from "next/image";
 
+import styles from "./Footer.module.scss";
 import Link from "next/link";
 
 const Footer = () => {
