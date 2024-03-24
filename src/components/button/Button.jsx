@@ -24,7 +24,6 @@ const Button = ({
   return (
     <button
       className={composeClasses}
-      button
       type={type}
       style={style}
       {...restProps}

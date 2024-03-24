@@ -8,8 +8,11 @@ import Input from "@/components/input/Input";
 import Button from "@/components/button/Button";
 import Divider from "@/components/divider/Divider";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 import LogoPath from "@/assets/colorful.svg";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase/firebase";
 
 const RegisterClient = () => {
   const [email, setEmail] = useState();
@@ -21,7 +24,27 @@ const RegisterClient = () => {
 
   const registerUser = (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      return toast.error(`비밀번호가 일치하지 않습니다.`);
+    }
+
     setIsLoading(true);
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("user", user);
+
+        setIsLoading(false);
+
+        toast.success("등록 성공...");
+        router.push("/login");
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        toast.error(error.message);
+      });
   };
 
   return (
@@ -74,7 +97,7 @@ const RegisterClient = () => {
 
           <div className={styles.buttonGroup}>
             {/* Button */}
-            <Button type="submit" width="100%">
+            <Button onClick={registerUser} type="submit" width="100%">
               회원가입
             </Button>
             <Divider />
