@@ -2,13 +2,12 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-// import LogoPath from "@/assets/chopang_logo.svg";
-import LogoPath from "@/assets/logo.svg";
+import LogoPath from "@/assets/colorful.svg";
 import { useRouter } from "next/navigation";
 
 import styles from "./Auth.module.scss";
 import Loader from "@/components/loader/Loader";
-import Input from "@/components/input/Input";
+import Input from "@/components/Input/Input";
 import AutoSignInCheckbox from "@/components/autoSignInCheckbox/AutoSignInCheckbox";
 import Divider from "@/components/divider/Divider";
 import Button from "@/components/button/Button";
@@ -22,7 +21,7 @@ import {
 import { auth } from "@/firebase/firebase";
 
 const LoginClient = () => {
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isAutoLogin, setIsAutoLogin] = useState(false);
@@ -33,9 +32,9 @@ const LoginClient = () => {
     router.push("/");
   };
 
-  const loginUser = (e) => {
+  const loginUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast.info("성공");
+    toast.info("성공!");
     setIsLoading(true);
 
     signInWithEmailAndPassword(auth, email, password)
@@ -81,7 +80,7 @@ const LoginClient = () => {
               label="이메일"
               placeholder="아이디(이메일)"
               className={styles.control}
-              vlaue={email}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
 
@@ -93,7 +92,7 @@ const LoginClient = () => {
               label="비밀번호"
               placeholder="비밀번호"
               className={styles.control}
-              vlaue={password}
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <div className={styles.group}>
@@ -121,23 +120,27 @@ const LoginClient = () => {
                 </svg>
               </Link>
             </div>
-          </form>
 
-          <div className={styles.buttonGroup}>
-            {/* Button */}
-            <Button onClick={loginUser} type="submit" width="100%">
-              로그인
-            </Button>
-            <Divider />
-            <Button type="submit" width="100%" secondary>
-              <Link href={"/register"}>회원가입</Link>
-            </Button>
-            <Divider />
-            <div>
+            <div className={styles.buttonGroup}>
               {/* Button */}
-              <Button onClick={signInWithGoogle}>구글 로그인</Button>
+              <Button type="submit" width="100%">
+                로그인
+              </Button>
+
+              <Divider />
+
+              <Button width="100%" secondary>
+                <Link href={"/register"}>회원가입</Link>
+              </Button>
+              <Divider />
+
+              <div>
+                {/* Button */}
+
+                <Button onClick={signInWithGoogle}>구글 로그인</Button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </section>
     </>
