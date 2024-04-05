@@ -1,4 +1,12 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
+
+interface ICheckboxProps {
+  disabled?: boolean;
+  checked?: boolean;
+  label: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  [x: string]: any;
+}
 
 const CheckBox = ({
   disabled = false,
@@ -6,7 +14,7 @@ const CheckBox = ({
   label,
   onChange,
   ...restProps
-}) => {
+}: ICheckboxProps) => {
   return (
     <label style={{ fontSize: "1.4rem" }}>
       <input

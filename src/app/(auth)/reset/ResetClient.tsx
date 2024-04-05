@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import styles from "./Reset.module.scss";
 import Loader from "@/components/loader/Loader";
 import Heading from "@/components/heading/Heading";
@@ -14,7 +14,7 @@ const ResetClient = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const reestePassword = (e) => {
+  const reestePassword = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -42,6 +42,8 @@ const ResetClient = () => {
 
             <form onSubmit={reestePassword}>
               <Input
+                id="reset"
+                label="reset"
                 type="text"
                 placeholder="Email"
                 required

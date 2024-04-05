@@ -2,23 +2,24 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import Link from "next/link";
-import { toast } from "react-toastify";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/firebase/firebase";
-import { usePathname } from "next/navigation";
+import { toast } from "react-toastify";
+import { usePathname, useRouter } from "next/navigation";
 import InnerHeader from "@/layouts/innerHeader/InnerHeader";
 
 const Header = () => {
   const pathname = usePathname();
 
   const [displayName, setDisplayName] = useState("");
+  const router = useRouter();
   const isLoggedIn = true;
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         if (user.displayName === null) {
-          const u1 = user.email.substring(0, user.email.indexOf("@"));
+          const u1 = user.email!.substring(0, user.email!.indexOf("@"));
           const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
           setDisplayName(uName);
         } else {
@@ -38,7 +39,7 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         toast.success("로그아웃 되었습니다.");
-        Router.push("/");
+        router.push("/");
       })
       .catch((error) => {
         toast.error(error.message);

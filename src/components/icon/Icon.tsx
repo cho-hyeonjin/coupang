@@ -6,7 +6,13 @@ import lockPath from "./Images/shape=lock.svg";
 import showPath from "./Images/shape=show.svg";
 import hidePath from "./Images/shape=hide.svg";
 
-const Icon = ({ type, alt = "", ...restProps }) => {
+interface IIconProps {
+  type: "letter" | "lock" | "show" | "hide";
+  alt?: string;
+  [x: string]: any;
+}
+
+const Icon = ({ type, alt = "", ...restProps }: IIconProps) => {
   let src = "";
 
   switch (type) {

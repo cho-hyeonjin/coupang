@@ -1,7 +1,25 @@
-import React, { useState } from "react";
-import styles from "./Input.module.scss";
 import classNames from "classnames";
+import React, { ChangeEvent, useState } from "react";
+import styles from "./Input.module.scss";
 import Icon from "../icon/Icon";
+
+interface IInputProps {
+  id: string;
+  label: string;
+  name?: string;
+  labelVisible?: boolean;
+  icon?: "letter" | "lock" | "show" | "hide";
+  email?: boolean;
+  password?: boolean;
+  placeholder?: string;
+  readonly?: boolean;
+  disabled?: boolean;
+  value?: string;
+  error?: { message: string };
+  className?: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  [x: string]: any;
+}
 
 const Input = ({
   id,
@@ -15,11 +33,11 @@ const Input = ({
   readOnly,
   disabled,
   value,
-  error: errorProp, //  이런 식으로 쓰면 errorProp이름으로 error prop을 사용할 수 있음
+  error: errorProp,
   className = "",
   onChange,
   ...restProps
-}) => {
+}: IInputProps) => {
   const [inputValue, setInputValue] = useState(value ? value : "");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -35,7 +53,7 @@ const Input = ({
     return "text";
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     onChange(e);
   };
@@ -44,8 +62,6 @@ const Input = ({
   const iconLabel = `비밀번호 ${isPasswordVisible ? "표시" : "감춤"}`;
 
   return (
-    // className={classNames(styles.foramControl, className)} 은 라이브러리 사용한 문법.
-    // classNames=('test1', 'test2') → className='test1 test2'
     <div className={classNames(styles.formControl, className)}>
       <label
         htmlFor={id}
@@ -65,7 +81,7 @@ const Input = ({
           id={id}
           type={checkType()}
           name={name}
-          className={styles.input}
+          className={classNames(styles.input)}
           placeholder={placeholder}
           readOnly={readOnly}
           disabled={disabled}
@@ -80,13 +96,11 @@ const Input = ({
             className={styles.button}
             onClick={() => setIsPasswordVisible((prev) => !prev)}
             disabled={disabled}
-            icon={icon}
           >
             <Icon type={iconType} alt={iconLabel} title={iconLabel} />
           </button>
         ) : null}
       </div>
-
       {errorProp && (
         <span role="alert" className={styles.error}>
           {errorProp.message}

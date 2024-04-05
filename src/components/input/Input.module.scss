@@ -41,12 +41,6 @@
     color: #24292e;
     font-size: 13px;
 
-    // 접근성 감춤 설정
-    // display: none;
-    // 으로 처리하면 화면상에 출력 X
-    // 크롤링봇이 인식 X
-    // 그래서 아래처럼 &Hidden 으로 만들어주면 'labelHidden' 클래스명으로 사용할 수 있고,
-    // 화면상에 보이지는 않지만 크롤러가 인식할 수는 있게 됨.
     &Hidden {
       position: absolute;
       clip-path: circle(0);
